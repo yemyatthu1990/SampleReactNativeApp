@@ -32,7 +32,7 @@ public class ShieldModule extends ReactContextBaseJavaModule implements ShieldCa
         Activity currentActivity = reactContext.getCurrentActivity();
         if (currentActivity != null) {
             try {
-                Shield shield = new Shield.Builder(reactContext.getCurrentActivity(), siteID, key)
+                Shield shield = new Shield.Builder(currentActivity, siteID, key)
                 .registerDeviceShieldCallback(this)
                 .build();
                 Shield.setSingletonInstance(shield);
