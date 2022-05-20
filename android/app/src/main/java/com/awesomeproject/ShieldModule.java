@@ -29,16 +29,19 @@ public class ShieldModule extends ReactContextBaseJavaModule implements ShieldCa
 
     @ReactMethod
     public void initShield(String siteID, String key) {
-        try {
-            Shield shield = new Shield.Builder(reactContext.getCurrentActivity(), siteID, key)
-            .registerDeviceShieldCallback(this)
-            .build();
-            Shield.setSingletonInstance(shield);
-            Log.d("shield", "initialization success");
+        Activity currentActivity = reactContext.getCurrentActivity();
+        if (currentActivity != null) {
+            try {
+                Shield shield = new Shield.Builder(reactContext.getCurrentActivity(), siteID, key)
+                .registerDeviceShieldCallback(this)
+                .build();
+                Shield.setSingletonInstance(shield);
+                Log.d("shield", "initialization success");
             
-         } 
-        catch (IllegalStateException e) {
+            }  
+            catch (IllegalStateException e) {
      
+            }
         }
     }
 
